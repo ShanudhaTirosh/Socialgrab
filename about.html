@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - SocialGrab</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Animated gradient text */
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Navbar */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 39, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(10, 14, 39, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #fff !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after {
+            width: 80%;
+        }
+        
+        /* Hero Section */
+        .hero-about {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 50px;
+        }
+        
+        .hero-about::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.3;
+            top: -100px;
+            right: -100px;
+        }
+        
+        .hero-about h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-about p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .content-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .content-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .content-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Platform Grid */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .platform-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+        }
+        
+        .platform-card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .platform-card h5 {
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        /* How it Works */
+        .steps {
+            margin: 40px 0;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+        
+        .step-number {
+            min-width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .step-content h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+        }
+        
+        .btn-glow {
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            background: var(--primary-gradient);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            color: #fff;
+        }
+        
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-glow:hover::before {
+            left: 100%;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 50px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            color: #fff;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-5px);
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+        }
+        
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-about h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-card h2 {
+                font-size: 1.8rem;
+            }
+            
+            .platform-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand gradient-text" href="index.html">
+                <i class="bi bi-cloud-download"></i> SocialGrab
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#platforms">Platforms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-glow ms-3 px-4" href="/app" style="border-radius: 25px;">Get Started</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center fade-in">
+                    <h1>About <span class="gradient-text">SocialGrab</span></h1>
+                    <p>Your trusted companion for downloading social media content effortlessly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is SocialGrab -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="content-card fade-in">
+                        <div class="icon-box">
+                            <i class="bi bi-info-circle"></i>
+                        </div>
+                        <h2 class="gradient-text">What is SocialGrab?</h2>
+                        <p>SocialGrab is a powerful yet simple web application designed to help you download videos, photos, and other content from your favorite social media platforms. Whether you're a content creator looking to save your work, a marketer collecting campaign materials, or simply someone who wants to keep their favorite memories offline, SocialGrab makes it incredibly easy.</p>
+                        <p class="mb-0">Our tool supports all major social media platforms including YouTube, Instagram, TikTok, Facebook, Twitter, Pinterest, and many more. With just a simple URL paste, you can download content in high quality without any complicated steps or registration requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="content-section" style="background: rgba(255, 255, 255, 0.02);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="content-card fade-in">
+                        <div class="icon-box">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h2 class="gradient-text">Why We Built This</h2>
+                        <p>The idea for SocialGrab came from a simple frustration: downloading content from social media platforms was unnecessarily complicated. Most existing solutions were cluttered with ads, required suspicious software installations, or had paywalls for basic features.</p>
+                        <p>We believed there had to be a better way. A way that was:</p>
+                        <ul style="color: rgba(255, 255, 255, 0.8); line-height: 2;">
+                            <li><strong>Simple</strong> - No complicated interfaces or confusing steps</li>
+                            <li><strong>Fast</strong> - Get your content in seconds, not minutes</li>
+                            <li><strong>Clean</strong> - No intrusive ads or malicious redirects</li>
+                            <li><strong>Free</strong> - Accessible to everyone, no hidden costs</li>
+                        </ul>
+                        <p class="mb-0">So we built SocialGrab - a tool that puts user experience first and removes all the friction from downloading social media content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Platforms -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="text-center mb-5">
+                        <h2 class="gradient-text" style="font-size: 2.5rem; font-weight: 700;">Supported Platforms</h2>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Download content from all your favorite social networks</p>
+                    </div>
+                    
+                    <div class="platform-grid">
+                        <div class="platform-card fade-in">
+                            <i class="bi bi-youtube" style="color: #FF0000;"></i>
+                            <h5>YouTube</h5>
+                        </div>
+                        <div class="platform-card fade-in" style="animation-delay: 0.1s;">
+                            <i class="bi bi-instagram" style="color: #E4405F;"></i>
+                            <h5>Instagram</h5>
+                        </div>
+                        <div class="platform-card fade-in" style="animation-delay: 0.2s;">
+                            <i class="bi bi-tiktok"></i>
+                            <h5>TikTok</h5>
+                        </div>
+                        <div class="platform-card fade-in" style="animation-delay: 0.3s;">
+                            <i class="bi bi-facebook" style="color: #1877F2;"></i>
+                            <h5>Facebook</h5>
+                        </div>
+                        <div class="platform-card fade-in" style="animation-delay: 0.4s;">
+                            <i class="bi bi-twitter-x" style="color: #1DA1F2;"></i>
+                            <h5>Twitter / X</h5>
+                        </div>
+                        <div class="platform-card fade-in" style="animation-delay: 0.5s;">
+                            <i class="bi bi-pinterest" style="color: #E60023;"></i>
+                            <h5>Pinterest</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="content-section" style="background: rgba(255, 255, 255, 0.02);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="text-center mb-5">
+                        <h2 class="gradient-text" style="font-size: 2.5rem; font-weight: 700;">How It Works</h2>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Three simple steps to download your content</p>
+                    </div>
+                    
+                    <div class="steps">
+                        <div class="step-item fade-in">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Copy the URL</h4>
+                                <p>Navigate to the social media post containing the video or photo you want to download. Copy the URL from your browser's address bar or use the share button to copy the link.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item fade-in" style="animation-delay: 0.1s;">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Paste & Process</h4>
+                                <p>Paste the URL into our download box and click the download button. Our servers will instantly process the link and extract the content in the highest quality available.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-item fade-in" style="animation-delay: 0.2s;">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Download & Enjoy</h4>
+                                <p>Choose your preferred quality and format, then click download. Your content will be saved directly to your device, ready to use offline anytime.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="gradient-text">Ready to Get Started?</h2>
+                    <p>Join thousands of users who trust SocialGrab for their content downloads</p>
+                    <a href="/app" class="btn-glow">
+                        <i class="bi bi-rocket-takeoff me-2"></i> Start Using App
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h5 class="gradient-text mb-3"><i class="bi bi-cloud-download"></i> SocialGrab</h5>
+                    <p style="color: rgba(255,255,255,0.6);">Your one-stop solution for downloading social media content quickly and easily.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h6 class="mb-3">Connect With Us</h6>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+            <div class="text-center" style="color: rgba(255,255,255,0.5);">
+                <p>&copy; 2025 SocialGrab. Developed with <i class="bi bi-heart-fill" style="color: #f5576c;"></i> by Shanudha Tirosh</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="bi bi-arrow-up"></i>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Fade in elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
